@@ -4,17 +4,15 @@ const finalScore = document.getElementById("finalScore")
 const mostRecentScore = localStorage.getItem("mostRecentScore")
 const saveScoreBtn = document.querySelector("#saveScoreBtn")
 //localStorage.setItem("highScoresUsers",[])
+console.log(saveScoreBtn)
 
 finalScore.innerText = mostRecentScore;
 
 
-//let HighScoreUsers = JSON.parse(localStorage.getItem("highScores")) 
+let HighScoreUsers = JSON.parse(localStorage.getItem("highScores")) || []
 
-let highScoresUsers = [
-    {score: 0,
-    name : "Patan"}
-]
-localStorage.setItem("highScores",JSON.stringify(highScoresUsers))
+
+
 
 
 username.addEventListener("keyup", () =>{
@@ -22,14 +20,16 @@ username.addEventListener("keyup", () =>{
 })
 
 
-saveScoreBtn.addEventListener("submit", () =>{
+saveScoreBtn.addEventListener('submit', function(evt){ 
+    evt.preventDefault();
+    console.log(mostRecentScore)
+    console.log(name.value)
     let Score = {
         score: mostRecentScore,
-        name : name.value
+        name : username.value
     }
+    console.log(Score)
     localStorage.setItem("highScores",JSON.stringify(HighScoreUsers))
     HighScoreUsers.push(Score)
-    
-   return console.log(HighScoreUsers)
 })
 

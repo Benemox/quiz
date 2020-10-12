@@ -1,5 +1,5 @@
 :root {
-    background-color: #ecf5ff;
+    background-color: #01c5c4;
     font-size: 62.5%;
 }
 *{
@@ -65,8 +65,14 @@ h3 {
     display: none
 }
 
+img{
+    width: auto;
+    height: 20rem;
+}
 
-
+.white{
+    color: white;
+}
 /* Buttons */
 
 .btn{
