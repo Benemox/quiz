@@ -14,7 +14,6 @@ let HighScoreUsers = JSON.parse(localStorage.getItem("highScores")) || []
 
 
 
-
 username.addEventListener("keyup", () =>{
     saveScoreBtn.disabled = !username
 })

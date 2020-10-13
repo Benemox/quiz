@@ -69,7 +69,10 @@ img{
     width: auto;
     height: 20rem;
 }
-
+.username{
+    font-size: 3rem;
+    color :white
+}
 .white{
     color: white;
 }
