@@ -2,9 +2,9 @@ const question = document.getElementById("question")
 const choices = Array.from(document.querySelectorAll(".choice-text"))
 const questionCounterText = document.getElementById("questionCounter")
 const scoreA = document.querySelector("#score")
-console.log(question)
-console.log(choices)
-console.log(questionCounterText)
+// console.log(question)
+// console.log(choices)
+// console.log(questionCounterText)
 let currentQuestion = {
 }
 let acceptingAnswer = false;
@@ -105,7 +105,7 @@ starGame = () => {
     questionConuter = 0;
     score = 0;
     availableQuestion = [...questions]
-    console.log(availableQuestion)
+   // console.log(availableQuestion)
     getNewQuestion()
 }
 
@@ -144,7 +144,7 @@ choices.forEach(choice => {
          }
         if(classToApply == "correct"){incrementScore(Correct_bonus)}
 
-        console.log(classToApply)
+      //  console.log(classToApply)
         getNewQuestion();
     })
     incrementScore = num =>{

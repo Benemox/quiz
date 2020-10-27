@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Preguntas</title>
+    <script  defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script  defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+    <script defer src="js/add.js"></script>
+</head>
+<body>
+    <a href="/index.html">iNDED</a>
+    <div id="addnew">
+        <form action="" id="question">
+            <label for="pregunta"></label>
+            <input type="text" id= "pregunta" placeholder="Pregunta">
+            <input type="text" id= "Opcion1" placeholder="Opcion1">
+            <input type="text" id= "Opcion2" placeholder="Opcion2">
+            <input type="text" id= "Opcion3" placeholder="Opcion3">
+            <input type="text" id= "Opcion4" placeholder="Opcion4">
+            <input type="text" id="Correct"  placeholder="¿Cual es la opcion correcta?">
+            <input type="submit" id="button" value="Enviar">
+        </form>
+    </div>
+</body>
+</html>
