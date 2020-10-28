@@ -83,6 +83,35 @@ button.addEventListener("click",(e) =>{
         // console.log(Math.floor(Math.random() * 999999999 ** 2).toString(16))
         // let data = ;
         console.log('salgo')    
-
+        
    }
 )
+
+button.addEventListener("click",(e) =>{
+  e.preventDefault();
+  console.log('entro')    
+let data = ({
+  question:  Question.value,
+  choice1: Opcion1.value,
+  choice2: Opcion2.value,
+  choice3: Opcion3.value,
+  choice4: Opcion4.value,
+  answer : answer.value})
+fetch("http://localhost:8080/newPregunta", {
+  method: 'POST', // or 'PUT'
+  body: JSON.stringify(data), // data can be `string` or {object}!
+  headers:{
+    'Content-Type': 'application/json'
+  }
+}).then(res => res.json())
+.catch(error => console.error('Error:', error))
+.then(response => console.log('Success:', response));
+
+  // console.log(addnewQuestion) 
+  // console.log(Math.floor(Math.random() * 999999999 ** 2).toString(16))
+  // let data = ;
+  console.log('salgo')    
+  
+}
+)
+

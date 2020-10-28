@@ -40,9 +40,20 @@ let availableQuestion ;
   //availableQuestion.order = Object.keys(availableQuestion).map((el, index) => `pregunta${index + 1}`).sort(() => Math.random() - 0.5);
   availableQuestion= Object.values(availableQuestion).sort(() => Math.random() - 0.5);
  }
+ 
 const Correct_bonus = 10;
 const Max_question = 5;
  
+
+
+
+
+
+
+
+
+//////////////////////////////////////NEW QUESTION REQUEST////////////////////////////////////////////7
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 getNewQuestion = () => {
 
     if(availableQuestion.length === 0 || questionCounter >= Max_question ){
@@ -93,6 +104,14 @@ choices.forEach(choice => {
         scoreA.innerText=score
     }
 })
+
+///////////////////////////////////////////////////////////////////////////////
+////////////////FIREBASE DIRECTO//////////////////////////////////////////////7
+
+
+
+
+
 // function getQuestions(){
 //   database = firebase.database()
 //   question1 = database.ref(`Preguntas/`)
@@ -106,6 +125,11 @@ choices.forEach(choice => {
 //   })
   
 // }
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
 starGame = async () => {
   questionConuter = 0;
   score = 0;

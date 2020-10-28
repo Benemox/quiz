@@ -37,6 +37,20 @@ let server = http.createServer((request,response)=>{
                     response.end()
                 })
     }
+    if(request.url === "/newPregunta"){
+        let addnewQuestion  = firebase.database().ref("/Preguntas")
+
+        addnewQuestion.once("value", (data) => {
+          let length = (data.val() && Object.keys(data.val()).length + 1) || 1;
+          addnewQuestion.child(`pregunta${length}`).set({
+            question:  Question.value,
+            choice1: Opcion1.value,
+            choice2: Opcion2.value,
+            choice3: Opcion3.value,
+            choice4: Opcion4.value,
+            answer : answer.value
+          });
+    }
     else {
         response.writeHead(404, "Not Found");
         response.end();
