@@ -16,40 +16,49 @@ var firebaseConfig = {
 }
 initDataBase()
 let dataBase = firebase.database()
-
+let length;
+let questions;
+dataBase.ref(`Preguntas/`).on(`value`,snapshot=>{
+    length = Object.keys(snapshot.val()).length + 1;
+    questions = snapshot.val();
+})
 
 
 let server = http.createServer((request,response)=>{
     // request.url
+    let data = "";
+    console.log(length);
     const headers = {
-        'Access-Control-Allow-Origin': '*'
-      };
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*'
+    };
     console.log("New Request")
     if(request.url === "/datos69"){
-        response.writeHead(200, {...headers, "Content-Type": "application/json"})
-        // let json = {
-        //     "node" : "js"
-        // };
-        dataBase.ref(`Preguntas/`)
-                .once(`value`,snapshot=>{
-                    let obj = snapshot.val()
-                    response.write(JSON.stringify(obj))
-                    response.end()
-                })
+            response.writeHead(200, {...headers, "Content-Type": "application/json"})
+            // let json = {
+            //     "node" : "js"
+            // };
+            dataBase.ref(`Preguntas/`)
+                    .once(`value`,snapshot=>{
+                        let obj = snapshot.val()
+                        response.write(JSON.stringify(obj))
+                        response.end()
+                    })
     }
     if(request.url === "/newPregunta"){
-        let addnewQuestion  = firebase.database().ref("/Preguntas")
-
-        addnewQuestion.once("value", (data) => {
-          let length = (data.val() && Object.keys(data.val()).length + 1) || 1;
-          addnewQuestion.child(`pregunta${length}`).set({
-            question:  Question.value,
-            choice1: Opcion1.value,
-            choice2: Opcion2.value,
-            choice3: Opcion3.value,
-            choice4: Opcion4.value,
-            answer : answer.value
-          });
+        response.writeHead(200, {...headers, "Content-Type": "application/json"})
+        request.on("data",async ques =>{
+            let questionData = ques.toString()
+            console.log(questionData)
+           
+            dataBase.ref("/Preguntas").child(`pregunta${length}`).set(questionData)
+            console.log("salgo")
+        })
+        
+        console.log(data)
+        
+        response.write("done")
+        response.end()
     }
     else {
         response.writeHead(404, "Not Found");
@@ -59,3 +68,10 @@ let server = http.createServer((request,response)=>{
 })
 server.listen(port,()=>console.log(`escuchando por el puerto ${port}`))
 console.log("hola mundo");
+
+
+
+
+
+
+

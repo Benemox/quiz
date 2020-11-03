@@ -16,6 +16,7 @@ let Opcion4 = document.getElementById("Opcion4")
 let answer = document.getElementById("Correct")
 
 let button = document.getElementById("button")
+
 let NewQuestion
 
 
@@ -37,55 +38,57 @@ let NewQuestion
 // console.log(Pruebas)
 
 
- function NewCollectionQuestion(){
+//  function NewCollectionQuestion(){
 
 
-    NewQuestion = {
-        "pregunta":{
-            "question": `${Question}`,
-            "choice1": `${Opcion1}`,
-            "choice2": `${Opcion2}`,
-            "choice3": `${Opcion3}`,
-            "choice4": `${Opcion4}`,
-            "answer" : `${answer}`
+//     NewQuestion = {
+//         "pregunta":{
+//             "question": `${Question}`,
+//             "choice1": `${Opcion1}`,
+//             "choice2": `${Opcion2}`,
+//             "choice3": `${Opcion3}`,
+//             "choice4": `${Opcion4}`,
+//             "answer" : `${answer}`
             
-        }
-    }
+//         }
+//     }
 
 
-    return  NewQuestion
-}
+//     return  NewQuestion
+// }
 
-function ewQuestion(){ firebase.database().ref("Preguntas/").on("value",snapshot => {
-    let data = snapshot.val();
-    Object.values(data)
-})}
-console.log(ewQuestion()) 
+// function ewQuestion(){ firebase.database().ref("Preguntas/").on("value",snapshot => {
+//     let data = snapshot.val();
+//     Object.values(data)
+// })}
+// console.log(ewQuestion()) 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////77
+///////////////////////////////FIREBASE DIRECT/////////////////////////////////////////////////////////////////7
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// button.addEventListener("click",(e) =>{
+//         e.preventDefault();
+//         console.log('entro')    
+//         let addnewQuestion  = firebase.database().ref("/Preguntas")
 
-button.addEventListener("click",(e) =>{
-        e.preventDefault();
-        console.log('entro')    
-        let addnewQuestion  = firebase.database().ref("/Preguntas")
-
-        addnewQuestion.once("value", (data) => {
-          let length = (data.val() && Object.keys(data.val()).length + 1) || 1;
-          addnewQuestion.child(`pregunta${length}`).set({
-            question:  Question.value,
-            choice1: Opcion1.value,
-            choice2: Opcion2.value,
-            choice3: Opcion3.value,
-            choice4: Opcion4.value,
-            answer : answer.value
-          });
-        })
-        // console.log(addnewQuestion) 
-        // console.log(Math.floor(Math.random() * 999999999 ** 2).toString(16))
-        // let data = ;
-        console.log('salgo')    
+//         addnewQuestion.once("value", (data) => {
+//           let length = (data.val() && Object.keys(data.val()).length + 1) || 1;
+//           addnewQuestion.child(`pregunta${length}`).set({
+//             question:  Question.value,
+//             choice1: Opcion1.value,
+//             choice2: Opcion2.value,
+//             choice3: Opcion3.value,
+//             choice4: Opcion4.value,
+//             answer : answer.value
+//           });
+//         })
+//         // console.log(addnewQuestion) 
+//         // console.log(Math.floor(Math.random() * 999999999 ** 2).toString(16))
+//         // let data = ;
+//         console.log('salgo')    
         
-   }
-)
+//    }
+// )
 
 button.addEventListener("click",(e) =>{
   e.preventDefault();
@@ -96,22 +99,21 @@ let data = ({
   choice2: Opcion2.value,
   choice3: Opcion3.value,
   choice4: Opcion4.value,
-  answer : answer.value})
+  answer : answer.value
+})
 fetch("http://localhost:8080/newPregunta", {
-  method: 'POST', // or 'PUT'
-  body: JSON.stringify(data), // data can be `string` or {object}!
+  method: 'POST', 
+  body: JSON.stringify(data), 
   headers:{
     'Content-Type': 'application/json'
   }
-}).then(res => res.json())
+}).then(res => console.log(res.text()))
+.then(response => console.log('Success:', response))
 .catch(error => console.error('Error:', error))
-.then(response => console.log('Success:', response));
+// console.log(addnewQuestion) 
+// console.log(Math.floor(Math.random() * 999999999 ** 2).toString(16))
+// let data = ;
+console.log('salgo')    
 
-  // console.log(addnewQuestion) 
-  // console.log(Math.floor(Math.random() * 999999999 ** 2).toString(16))
-  // let data = ;
-  console.log('salgo')    
-  
 }
 )
-
