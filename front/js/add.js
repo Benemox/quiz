@@ -16,7 +16,6 @@ let Opcion4 = document.getElementById("Opcion4")
 let answer = document.getElementById("Correct")
 
 let button = document.getElementById("button")
-
 let NewQuestion
 
 
@@ -62,9 +61,7 @@ let NewQuestion
 //     Object.values(data)
 // })}
 // console.log(ewQuestion()) 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////77
-///////////////////////////////FIREBASE DIRECT/////////////////////////////////////////////////////////////////7
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // button.addEventListener("click",(e) =>{
 //         e.preventDefault();
@@ -99,21 +96,22 @@ let data = ({
   choice2: Opcion2.value,
   choice3: Opcion3.value,
   choice4: Opcion4.value,
-  answer : answer.value
-})
-fetch("http://localhost:8080/newPregunta", {
-  method: 'POST', 
-  body: JSON.stringify(data), 
+  answer : answer.value})
+fetch("http://localhost:5500/newPregunta", {
+  method: 'POST', // or 'PUT'
+  body: JSON.stringify(data), // data can be `string` or {object}!
   headers:{
     'Content-Type': 'application/json'
   }
-}).then(res => console.log(res.text()))
-.then(response => console.log('Success:', response))
+}).then(res => res.json())
 .catch(error => console.error('Error:', error))
-// console.log(addnewQuestion) 
-// console.log(Math.floor(Math.random() * 999999999 ** 2).toString(16))
-// let data = ;
-console.log('salgo')    
+.then(response => console.log('Success:', response));
 
+  // console.log(addnewQuestion) 
+  // console.log(Math.floor(Math.random() * 999999999 ** 2).toString(16))
+  // let data = ;
+  console.log('salgo')    
+  
 }
 )
+

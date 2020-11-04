@@ -1,5 +1,8 @@
 let HighScoreUsers = JSON.parse(localStorage.getItem("highScores")) 
 
+
+
+fetch("http://localhost:5500/newPregunta")
 console.log(`${HighScoreUsers.length}`)
 function BuildAQ(){
     let ranking = document.getElementById("ranking");

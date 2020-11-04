@@ -1,6 +1,10 @@
-const http = require("http")
+const express = require ("express")
 const firebase = require("firebase")
-const port = 8080
+const cors = require('cors')
+const bodyParser = require("body-parser")
+const app = express()
+const port = 5500
+
 function initDataBase(){
 var firebaseConfig = {
     apiKey: "AIzaSyB222sWsWflpkab90ilE3sJ2k1Ik5GTPcA",
@@ -15,58 +19,39 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 }
 initDataBase()
-let dataBase = firebase.database()
-let length;
-let questions;
-dataBase.ref(`Preguntas/`).on(`value`,snapshot=>{
-    length = Object.keys(snapshot.val()).length + 1;
-    questions = snapshot.val();
+
+app.use(cors());
+app.use(bodyParser.json());
+
+app.get("/datos69",cors(), (req,res)=>{
+  dataBase.ref("Preguntas/")
+            .once("value",snapshot =>{
+              let obj = snapshot.val()
+              res.send(JSON.stringify(obj))
+            })
+  
+})
+
+app.post("/newPregunta/",(req,res) => {
+  let addQuestion = dataBase.ref("Preguntas/")
+  console.log(req.body)
+  addQuestion.once("value",(data)=>{
+    let length = (data.val() && Object.keys(data.val()).length +1) || 1
+    addQuestion.child(`pregunta${length}`).set({
+      question : req.body.question,
+      choice1  : req.body.choice1,
+      choice2  : req.body.choice2,
+      choice3  : req.body.choice3,
+      choice4  : req.body.choice4,
+      answer   : req.body.answer
+    })
+    res.send({"message" : "ok"})
+  })
 })
 
 
-let server = http.createServer((request,response)=>{
-    // request.url
-    let data = "";
-    console.log(length);
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*'
-    };
-    console.log("New Request")
-    if(request.url === "/datos69"){
-            response.writeHead(200, {...headers, "Content-Type": "application/json"})
-            // let json = {
-            //     "node" : "js"
-            // };
-            dataBase.ref(`Preguntas/`)
-                    .once(`value`,snapshot=>{
-                        let obj = snapshot.val()
-                        response.write(JSON.stringify(obj))
-                        response.end()
-                    })
-    }
-    if(request.url === "/newPregunta"){
-        response.writeHead(200, {...headers, "Content-Type": "application/json"})
-        request.on("data",async ques =>{
-            let questionData = ques.toString()
-            console.log(questionData)
-           
-            dataBase.ref("/Preguntas").child(`pregunta${length}`).set(questionData)
-            console.log("salgo")
-        })
-        
-        console.log(data)
-        
-        response.write("done")
-        response.end()
-    }
-    else {
-        response.writeHead(404, "Not Found");
-        response.end();
-    }
-    
-})
-server.listen(port,()=>console.log(`escuchando por el puerto ${port}`))
+
+app.listen(port,()=>console.log(`escuchando por el puerto ${port}`))
 console.log("hola mundo");
 
 
