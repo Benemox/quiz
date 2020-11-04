@@ -19,7 +19,7 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 }
 initDataBase()
-
+const dataBase = firebase.database()
 app.use(cors());
 app.use(bodyParser.json());
 
