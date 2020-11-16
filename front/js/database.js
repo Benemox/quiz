@@ -16,7 +16,7 @@ let questionCounter = 0;
 let availableQuestion ;
 
   async function Ppruebas(){
-  let datos = await fetch("http://localhost:5500/datos69")
+  let datos = await fetch("http://localhost:8800/datos69")
   availableQuestion = await datos.json();
   availableQuestion= Object.values(availableQuestion).sort(() => Math.random() - 0.5);
  }

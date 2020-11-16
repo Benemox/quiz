@@ -11,7 +11,8 @@
     
     <script  defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
     <script  defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
-    <script defer src="js/database.js"></script>
+    <!-- <script  defer src="js/database.js"></script> -->
+  
     
    
 </head>
@@ -22,10 +23,16 @@
               <a href="highscores.html" class="btn">High Scores</a>
               <a href="game.html" class="btn">Play</a>
               <a href="https://github.com/Benemox">Mas juegos</a>
-              <a href="add.html">Añadir preguntas al Repertorio</a>
+              <a href="Login.html">Cerrar Sesion</a>
+              <div>
+                <label for="email">Usuario</label>
+                <input type="text" id="email" placeholder="Introduce tu email">
+                <input type="password" name="password" id="pass" placeholder="Contraseña">
+                <button type="submit" id="btnEntrar">Entrar</button>
+                </div>
           </div>
       </div>
        
-     
+       <script   src="js/index.js"></script>
 </body>
 </html>

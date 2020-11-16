@@ -7,12 +7,17 @@
     <script  defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
     <script  defer src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
     <script defer src="js/add.js"></script>
+    <link rel="stylesheet" href="cs/add.css">
 </head>
 <body>
-    <a href="index.html">index</a>
+    <div>
+        <a href="index.html">index</a>
+        <a href="Login.html">Cerrar Sesion</a> 
+    </div>
+   
     <div id="addnew">
         <form action="" id="question">
-            <label for="pregunta"></label>
+            <label for="pregunta">Cambiar</label>
             <input type="text" id= "pregunta" placeholder="Pregunta">
             <input type="text" id= "Opcion1" placeholder="Opcion1">
             <input type="text" id= "Opcion2" placeholder="Opcion2">
@@ -22,5 +27,6 @@
             <input type="submit" id="button" value="Enviar">
         </form>
     </div>
+    <div class=”container” id="options"></div>
 </body>
 </html>
